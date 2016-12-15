@@ -127,19 +127,19 @@
                 <!-- Page master for Cover Page -->
                 <fo:simple-page-master master-name="cover-page" page-width="8.5in" page-height="11in" margin="0.5in">                
                     <fo:region-body margin="0.5in 0.5in 1in 0.5in"/>                 
-                    <fo:region-before extent="0.2in"/>                    
-                    <fo:region-after extent="2in"/>                    
+                    <fo:region-before extent="0.2in"/>
+                    <fo:region-after extent="2in"/>
                 </fo:simple-page-master>                
                 <!-- Page master for Table of Contents -->                
                 <fo:simple-page-master master-name="toc" page-width="8.5in" page-height="11in" margin="0.5in">          
                     <fo:region-body margin-top="0.25in" margin-bottom="0.25in"/>                
-                    <fo:region-before extent="0.5in"/>                    
-                    <fo:region-after extent="0.2in"/>                    
+                    <fo:region-before extent="0.5in"/>
+                    <fo:region-after extent="0.2in"/>
                 </fo:simple-page-master>                  
                 <!-- Page master for Finding Aid Contents -->
                 <fo:simple-page-master master-name="contents" page-width="8.5in" page-height="11in" margin="0.5in">  
-                    <fo:region-body margin-top="0.25in" margin-bottom="0.25in"/>
-                    <fo:region-before extent="0.5in"/>                    
+                    <fo:region-body margin-top="0.5in" margin-bottom="0.5in"/>
+                    <fo:region-before extent="0.5in"/>
                     <fo:region-after extent="0.2in"/>
                 </fo:simple-page-master>
             </fo:layout-master-set>              
@@ -1524,7 +1524,7 @@
         <fo:block margin-bottom="0">
             <xsl:apply-templates select="ead:unittitle"/>
             <xsl:if test="(string-length(ead:unittitle[1]) &gt; 1) and (string-length(ead:unitdate[1]) &gt; 1)">, </xsl:if>
-            <xsl:apply-templates select="ead:unitdate" mode="did"/>    
+            <!-- <xsl:apply-templates select="ead:unitdate" mode="did"/> -->
         </fo:block> 
         <fo:block margin-bottom="4pt" margin-top="0">
             <xsl:apply-templates select="ead:repository" mode="dsc"/>            
@@ -1581,7 +1581,7 @@
     </xsl:template>
     <xsl:template match="ead:relatedmaterial | ead:separatedmaterial | ead:accessrestrict | ead:userestrict |
         ead:custodhist | ead:accruals | ead:altformavail | ead:acqinfo |  
-        ead:processinfo | ead:appraisal | ead:originalsloc" mode="dsc">
+        ead:appraisal | ead:originalsloc" mode="dsc">
         <xsl:if test="child::*">
             <fo:block xsl:use-attribute-sets="smpDsc">
                 <fo:inline text-decoration="underline"><xsl:value-of select="local:tagName(.)"/>:</fo:inline>
