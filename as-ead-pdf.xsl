@@ -5,11 +5,13 @@
     <!--
         *******************************************************************
         *                                                                 *
-        * VERSION:          1.0                                           *
+        * VERSION:          1.01                                           *
         *                                                                 *
         * AUTHOR:           Winona Salesky                                *
-        *                   wsalesky@gmail.com                            *
-        *                                                                 *
+        *                   wsalesky@gmail.com   
+        *    Revised for MIT Libraries by
+        *                   Kari Smith and Chris Tanguay
+        * Revision Date:    2016-10-01                                              *
         * DATE:             2013-08-21                                    *
         *                                                                 *
         * ABOUT:            This file has been created for use with       *
@@ -28,7 +30,7 @@
     <!-- The following attribute sets are reusabe styles used throughout the stylesheet. -->
     <!-- Headings -->
     <xsl:attribute-set name="h1">
-        <xsl:attribute name="font-size">22pt</xsl:attribute>
+        <xsl:attribute name="font-size">18pt</xsl:attribute><!--IASC local-->
         <xsl:attribute name="font-weight">bold</xsl:attribute>
         <xsl:attribute name="margin-top">16pt</xsl:attribute>
         <xsl:attribute name="margin-bottom">8pt</xsl:attribute>
@@ -102,7 +104,7 @@
         <xsl:attribute name="table-layout">fixed</xsl:attribute>
         <xsl:attribute name="width">100%</xsl:attribute>
         <xsl:attribute name="border">.5pt solid #ccc</xsl:attribute>
-        <xsl:attribute name="border-collapse">seperate</xsl:attribute>
+        <xsl:attribute name="border-collapse">separate</xsl:attribute>
         <xsl:attribute name="space-after">12pt</xsl:attribute>        
     </xsl:attribute-set>    
     <!-- Table headings -->
@@ -114,7 +116,7 @@
     <!-- Table cells with borders -->
     <xsl:attribute-set name="tdBorder">
         <xsl:attribute name="border">.5pt solid #ccc</xsl:attribute>
-        <xsl:attribute name="border-collapse">seperate</xsl:attribute>
+        <xsl:attribute name="border-collapse">separate</xsl:attribute>
     </xsl:attribute-set>
     
     <!--  Start main page design and layout -->
@@ -159,16 +161,16 @@
             <fo:page-sequence master-reference="toc">            
                 <!-- Page header -->                
                 <fo:static-content flow-name="xsl-region-before" margin-top=".15in">
-                    <fo:block color="gray" font-size="8pt" text-align="center">
+                    <fo:block color="gray" font-size="12pt" text-align="center">
                         <xsl:apply-templates select="ead:ead/ead:eadheader/ead:filedesc/ead:titlestmt" mode="pageHeader"/>
                     </fo:block>
                 </fo:static-content>
                 <!-- Page footer-->
                 <fo:static-content flow-name="xsl-region-after">
                     <fo:block text-align="center" color="gray">
-                        <xsl:text>- Page </xsl:text>                        
+                        <xsl:text>Page </xsl:text>                        
                         <fo:page-number/>
-                        <xsl:text> -</xsl:text>
+                        <xsl:text> | http://libguides.mit.edu/EMMAS_guide |</xsl:text><!-- MIT local -->
                     </fo:block>
                 </fo:static-content>
                 <!-- Content of page -->
@@ -180,16 +182,16 @@
             <fo:page-sequence master-reference="contents">
                 <!-- Page header -->
                 <fo:static-content flow-name="xsl-region-before" margin-top=".15in">
-                    <fo:block color="gray" font-size="8pt" text-align="center">
+                    <fo:block color="gray" font-size="12pt" text-align="center"><!--MIT local-->
                         <xsl:apply-templates select="ead:ead/ead:eadheader/ead:filedesc/ead:titlestmt" mode="pageHeader"/>
                     </fo:block>
                 </fo:static-content>
                 <!-- Page footer-->
                 <fo:static-content flow-name="xsl-region-after">
-                    <fo:block text-align="center">        
-                        <xsl:text>- Page </xsl:text> 
+                    <fo:block text-align="center">
+                        <xsl:text>Page </xsl:text> 
                         <fo:page-number/>
-                        <xsl:text>- </xsl:text>
+                        <xsl:text> | http://libguides.mit.edu/EMMAS_guide | </xsl:text><!-- MIT local -->
                     </fo:block>
                 </fo:static-content>
                 <!-- Content of page -->
@@ -272,8 +274,8 @@
         i.e. src="myicon.png"
     -->
     <xsl:template name="icon">
-        <fo:block text-align="left" margin-left="-.75in" margin-top="-.5in">
-            <fo:external-graphic src="archivesspace.small.png" content-height="75%" content-width="75%"/>
+        <fo:block text-align="left" margin-left=".5in" margin-top=".5in">
+            <fo:external-graphic src="liblogo.red.png" content-height="100%" content-width="100%"/><!--MIT local-->
         </fo:block>
     </xsl:template>
     
@@ -1279,22 +1281,22 @@
     <!-- Collection Inventory (dsc) templates -->
     <xsl:template match="ead:archdesc/ead:dsc">
         <xsl:if test="count(child::*) >= 1">
-		<fo:block xsl:use-attribute-sets="section">
-		    <fo:block xsl:use-attribute-sets="h2ID"><xsl:value-of select="local:tagName(.)"/></fo:block>
-		    <fo:table table-layout="fixed" space-after="12pt" width="100%" font-size="10pt">
-			<fo:table-column column-number="1" column-width="4in"/>
-			<fo:table-column column-number="2" column-width="1in"/>
-			<fo:table-column column-number="3" column-width="1in"/>
-			<fo:table-column column-number="4" column-width="1in"/>
-			<fo:table-body>
-			    <xsl:if test="child::*[@level][1][@level='item' or @level='file' or @level='otherlevel']">
-				<xsl:call-template name="tableHeaders"/>
-			    </xsl:if>
-			    <xsl:apply-templates select="*[not(self::ead:head)]"/>
-			</fo:table-body>
-		    </fo:table> 
-		</fo:block>        
-	</xsl:if> 
+        <fo:block xsl:use-attribute-sets="section">
+            <fo:block xsl:use-attribute-sets="h2ID"><xsl:value-of select="local:tagName(.)"/></fo:block>
+            <fo:table table-layout="fixed" space-after="12pt" width="100%" font-size="10pt">
+            <fo:table-column column-number="1" column-width="4in"/>
+            <fo:table-column column-number="2" column-width="1in"/>
+            <fo:table-column column-number="3" column-width="1in"/>
+            <fo:table-column column-number="4" column-width="1in"/>
+            <fo:table-body>
+                <xsl:if test="child::*[@level][1][@level='item' or @level='file' or @level='otherlevel']">
+                <xsl:call-template name="tableHeaders"/>
+                </xsl:if>
+                <xsl:apply-templates select="*[not(self::ead:head)]"/>
+            </fo:table-body>
+            </fo:table> 
+        </fo:block>        
+    </xsl:if> 
     </xsl:template>
 
     <!--
