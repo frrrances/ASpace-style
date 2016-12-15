@@ -275,7 +275,7 @@
     -->
     <xsl:template name="icon">
         <fo:block text-align="left" margin-left=".5in" margin-top=".5in">
-            <fo:external-graphic src="liblogo.red.png" content-height="100%" content-width="100%"/><!--MIT local-->
+            <fo:external-graphic src="liblogo.red.png" content-height="75%" content-width="75%"/><!--MIT local-->
         </fo:block>
     </xsl:template>
     
@@ -605,7 +605,7 @@
                     <fo:block xsl:use-attribute-sets="h2" id="adminInfo">Administrative Information</fo:block>
                     <xsl:apply-templates select="ead:accessrestrict | ead:userestrict |
                         ead:custodhist | ead:accruals | ead:altformavail | ead:acqinfo |  
-                        ead:processinfo | ead:appraisal | ead:originalsloc | 
+                        ead:appraisal | ead:originalsloc | 
                         /ead:ead/ead:eadheader/ead:filedesc/ead:publicationstmt | /ead:ead/ead:eadheader/ead:revisiondesc"/>
                     <xsl:call-template name="toc"/>
                 </fo:block>
@@ -731,7 +731,7 @@
     <!-- Formats children of arcdesc in administrative and related materials sections -->
     <xsl:template match="ead:relatedmaterial | ead:separatedmaterial | ead:accessrestrict | ead:userestrict |
         ead:custodhist | ead:accruals | ead:altformavail | ead:acqinfo |  
-        ead:processinfo | ead:appraisal | ead:originalsloc">
+        ead:appraisal | ead:originalsloc">
         <fo:block xsl:use-attribute-sets="section">
             <fo:block xsl:use-attribute-sets="h3ID"><xsl:value-of select="local:tagName(.)"/></fo:block>
                 <xsl:apply-templates/>
