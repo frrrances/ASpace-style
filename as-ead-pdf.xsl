@@ -1498,7 +1498,7 @@
             -->
             <xsl:apply-templates select="ead:unittitle"/>
             <xsl:if test="(string-length(ead:unittitle[1]) &gt; 1) and (string-length(ead:unitdate[1]) &gt; 1)">, </xsl:if>
-            <xsl:apply-templates select="ead:unitdate" mode="did"/>
+            <!-- <xsl:apply-templates select="ead:unitdate" mode="did"/> -->
         </fo:block>
     </xsl:template>
     
@@ -1507,7 +1507,7 @@
         <fo:block margin-bottom="4pt" margin-top="0">        
             <xsl:apply-templates select="ead:repository" mode="dsc"/>            
             <xsl:apply-templates select="ead:origination" mode="dsc"/>            
-            <xsl:apply-templates select="ead:unitdate" mode="dsc"/>            
+            <!-- <xsl:apply-templates select="ead:unitdate" mode="dsc"/> -->
             <xsl:apply-templates select="ead:physdesc" mode="dsc"/>                    
             <xsl:apply-templates select="ead:physloc" mode="dsc"/>             
             <xsl:apply-templates select="ead:dao"/>            
@@ -1524,12 +1524,12 @@
         <fo:block margin-bottom="0">
             <xsl:apply-templates select="ead:unittitle"/>
             <xsl:if test="(string-length(ead:unittitle[1]) &gt; 1) and (string-length(ead:unitdate[1]) &gt; 1)">, </xsl:if>
-            <xsl:apply-templates select="ead:unitdate" mode="did"/> 
+            <!-- <xsl:apply-templates select="ead:unitdate" mode="did"/> -->
         </fo:block> 
         <fo:block margin-bottom="4pt" margin-top="0">
             <xsl:apply-templates select="ead:repository" mode="dsc"/>            
             <xsl:apply-templates select="ead:origination" mode="dsc"/>            
-            <xsl:apply-templates select="ead:unitdate" mode="dsc"/>            
+            <!-- <xsl:apply-templates select="ead:unitdate" mode="dsc"/> -->
             <xsl:apply-templates select="ead:physdesc" mode="dsc"/>                    
             <xsl:apply-templates select="ead:physloc" mode="dsc"/>             
             <xsl:apply-templates select="ead:dao" mode="dsc"/>            
@@ -1544,7 +1544,7 @@
     <xsl:template match="ead:unitdate[@type = 'bulk']" mode="did">
         (<xsl:apply-templates/>)
     </xsl:template>
-    <xsl:template match="ead:unitdate" mode="did"><xsl:apply-templates/></xsl:template>
+    <!-- <xsl:template match="ead:unitdate" mode="did"><xsl:apply-templates/></xsl:template> -->
     
     <!-- Special formatting for elements in the collection inventory list -->
     <xsl:template match="ead:repository | ead:origination | ead:unitdate | ead:unitid  
